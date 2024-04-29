@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c8ub41mryro4m"]
+[gd_scene load_steps=43 format=3 uid="uid://c8ub41mryro4m"]
 
 [ext_resource type="Script" path="res://scenes/enimies/bug.gd" id="1_0w7ij"]
 [ext_resource type="Texture2D" uid="uid://bodi0nldnvspy" path="res://graphics/enemies/bug/attack/00010.png" id="1_l8elp"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://ckeb6s40aygit" path="res://graphics/enemies/bug/walk/00006.png" id="28_vri2c"]
 [ext_resource type="Texture2D" uid="uid://to1g432o57ti" path="res://graphics/enemies/bug/walk/00007.png" id="29_rpyk3"]
 [ext_resource type="Texture2D" uid="uid://c74y852y2wfh2" path="res://graphics/enemies/bug/walk/00008.png" id="30_wnsrx"]
+[ext_resource type="Texture2D" uid="uid://bkaj14dkei3ku" path="res://graphics/explosions/grunge.png" id="33_vm2d7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jovp"]
 shader = ExtResource("2_opaca")
@@ -151,7 +152,34 @@ radius = 46.8807
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw53c"]
 radius = 0.679824
 
-[node name="Bug" type="CharacterBody2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2a4m0"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_udq8m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5nipc"]
+curve = SubResource("Curve_udq8m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_awhkf"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.81
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_5nipc")
+anim_offset_max = 1.0
+
+[node name="Bug" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_0w7ij")
@@ -189,6 +217,20 @@ shape = SubResource("CircleShape2D_yw53c")
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="HitParticles" type="GPUParticles2D" parent="Particles"]
+modulate = Color(0.137507, 0.220322, 0.113607, 1)
+material = SubResource("CanvasItemMaterial_2a4m0")
+position = Vector2(-1, 0)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_awhkf")
+texture = ExtResource("33_vm2d7")
+lifetime = 0.2
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

@@ -8,3 +8,7 @@ res://scenes/player/player.tscn
 res://scenes/enimies/bug.tscn
 res://scenes/projectiles/laser.tscn
 res://scenes/enimies/bug.gd
+res://scenes/enimies/drone.tscn
+res://scenes/enimies/drone.gd
+res://scenes/player/player.gd
+res://scenes/projectiles/grenade.tscn

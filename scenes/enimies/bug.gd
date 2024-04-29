@@ -9,7 +9,7 @@ var attack_on_cooldown: bool = false
 var health = 50
 var invulnerable: bool = false
 
-func _process(delta):
+func _process(_delta):
 	if player_nearby and not player_in_attack_range:
 		$AnimatedSprite2D.play("walk")
 		look_at(Globals.player_pos)
@@ -18,10 +18,8 @@ func _process(delta):
 		
 	if player_in_attack_range:
 		if not attack_on_cooldown:
-			if "hit" in player :
-				player.hit()
-			$AnimatedSprite2D.play("attack")
 			attack_on_cooldown = true
+			$AnimatedSprite2D.play("attack")
 			$AttackCooldown.start()
 		#look_at(Globals.player_pos)
 		#velocity = (Globals.player_pos - global_position).normalized() * SPEED
@@ -46,15 +44,23 @@ func _on_attack_cooldown_timeout():
 	attack_on_cooldown = false
 	
 func hit():
-	health -= 10
-	invulnerable = true
-	$InvulnerabilityTimer.start()
-	$AnimatedSprite2D.material.set_shader_parameter("progress", 1)
-	if health <= 0:
-		queue_free()
+	if not invulnerable:
+		health -= 10
+		invulnerable = true
+		$InvulnerabilityTimer.start()
+		$AnimatedSprite2D.material.set_shader_parameter("progress", 0.6)
+		$Particles/HitParticles.emitting = true
+		if health <= 0:
+			await get_tree().create_timer(0.5).timeout
+			queue_free()
 
 
 func _on_invulnerability_timer_timeout():
 	invulnerable = false
 	$AnimatedSprite2D.material.set_shader_parameter("progress", 0)
 	
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if player_in_attack_range and "hit" in player :
+		player.hit()

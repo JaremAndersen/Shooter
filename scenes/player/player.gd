@@ -6,7 +6,7 @@ signal player_shoot_grenade(pos, direction)
 var can_laser: bool = true
 var can_grenade: bool = true
 
-@export var max_speed: int = 500
+@export var max_speed: int = 600
 var speed: int = max_speed
 
 # Called when the node enters the scene tree for the first time.
@@ -51,6 +51,7 @@ func _on_grenade_timer_timeout():
 	can_grenade = true
 	
 func hit():
+	print("player hit")
 	Globals.player_health -= 10
 	
 

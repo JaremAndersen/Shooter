@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bqhmjix6now4m"]
+[gd_scene load_steps=26 format=3 uid="uid://bqhmjix6now4m"]
 
 [ext_resource type="PackedScene" uid="uid://dt3rhrinufrvf" path="res://scenes/levels/level.tscn" id="1_rulic"]
 [ext_resource type="Texture2D" uid="uid://bowldok5mqq1n" path="res://graphics/ground/stones.png" id="2_ecch3"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c46uuype3b3kr" path="res://scenes/objects/crate.tscn" id="19_uexsb"]
 [ext_resource type="PackedScene" uid="uid://crskrawyrqrl5" path="res://scenes/enimies/scout.tscn" id="20_c4usd"]
 [ext_resource type="PackedScene" uid="uid://c8ub41mryro4m" path="res://scenes/enimies/bug.tscn" id="21_3mwdk"]
+[ext_resource type="PackedScene" uid="uid://byncfatf2wy8i" path="res://scenes/enimies/drone.tscn" id="22_wtqmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_keteh"]
 resource_name = "walls"
@@ -155,10 +156,13 @@ rotation = -1.06116
 position = Vector2(-266, 806)
 
 [node name="Bug" parent="Enemies" index="0" instance=ExtResource("21_3mwdk")]
-position = Vector2(2733, 1118)
+position = Vector2(3517, 1478)
 
 [node name="Scout" parent="Enemies" index="1" instance=ExtResource("20_c4usd")]
 position = Vector2(1615, 1444)
+
+[node name="Drone" parent="Enemies" index="2" instance=ExtResource("22_wtqmt")]
+position = Vector2(-945, 737)
 
 [node name="Player" parent="." index="10"]
 position = Vector2(466, 476)
