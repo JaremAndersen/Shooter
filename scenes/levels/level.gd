@@ -13,7 +13,6 @@ func _ready():
 	
 
 func _on_container_opened(pos,direction):
-	print('container oppened')
 	var item = item_scene.instantiate()
 	item.position = pos
 	item.direction = direction
@@ -32,8 +31,7 @@ func _on_scout_laser(pos, direction):
 	create_laser(pos,direction)
 
 func _on_grenade_explode():
-	print('yup exploded')
-
+	pass
 
 func create_laser(pos, direction):
 	var laser = laser_scene.instantiate() as Area2D

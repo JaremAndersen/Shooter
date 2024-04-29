@@ -2,12 +2,12 @@ extends Area2D
 
 var rotation_speed: int = 5
 var available_options = ['laser', 'laser', 'laser', 'laser', 'grenade', 'health']
-#var type  = available_options[randi() % len(available_options)]
+var type  = available_options[randi() % len(available_options)]
 
 var direction: Vector2
 var distance: int = randi_range(150,250)
 
-var type = "health"
+#var type = "health"
 func _ready():
 	if type == 'laser':
 		$Sprite2D.modulate = Color(0.1,0.2,8,.7)

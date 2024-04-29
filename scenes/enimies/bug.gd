@@ -27,7 +27,6 @@ func _process(_delta):
 	
 
 func _on_notice_area_body_entered(body):
-	print("entered notice")
 	player_nearby = true
 	player = body
 
