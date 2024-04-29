@@ -154,7 +154,10 @@ rotation = -1.06116
 [node name="Item" parent="Items" index="0" instance=ExtResource("18_oulo2")]
 position = Vector2(-266, 806)
 
-[node name="Scout" parent="Enemies" index="0" instance=ExtResource("20_c4usd")]
+[node name="Bug" parent="Enemies" index="0" instance=ExtResource("21_3mwdk")]
+position = Vector2(2733, 1118)
+
+[node name="Scout" parent="Enemies" index="1" instance=ExtResource("20_c4usd")]
 position = Vector2(1615, 1444)
 
 [node name="Player" parent="." index="10"]
@@ -163,9 +166,6 @@ metadata/_edit_group_ = true
 
 [node name="Camera2D" parent="Player" index="7"]
 metadata/_edit_group_ = true
-
-[node name="Bug" parent="." index="12" instance=ExtResource("21_3mwdk")]
-position = Vector2(2733, 1118)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]

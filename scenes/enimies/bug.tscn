@@ -153,6 +153,7 @@ radius = 0.679824
 
 [node name="Bug" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_0w7ij")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

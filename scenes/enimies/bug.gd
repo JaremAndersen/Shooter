@@ -33,12 +33,12 @@ func _on_notice_area_body_entered(body):
 	player_nearby = true
 	player = body
 
-func _on_attack_area_body_entered(body):
+func _on_attack_area_body_entered(_body):
 	player_in_attack_range = true
 	
 
 
-func _on_attack_area_body_exited(body):
+func _on_attack_area_body_exited(_body):
 	player_in_attack_range = false
 
 
