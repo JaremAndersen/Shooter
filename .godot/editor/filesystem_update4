@@ -1,0 +1,9 @@
+res://scenes/levels/level.tscn
+res://scenes/levels/house.tres
+res://scenes/enimies/scout.gdshader
+res://scenes/levels/outside.tscn
+res://scenes/levels/inside.tscn
+res://scenes/enimies/scout.tscn
+res://scenes/player/player.tscn
+res://scenes/enimies/bug.tscn
+res://scenes/projectiles/laser.tscn
